@@ -2,7 +2,17 @@
 
 <% @blog_posts.each do |blog_post| %>
 	<div>
-		<h2><%= link_to blog_post.title, blog_post %></h2>
+		<h2>
+			<%= link_to blog_post.title, blog_post %>
+			<% if blog_post.draft? %>
+				<span class="bg-gray-100 text-gray-900 p-1 rounded text-xs font-normal ml-2">Draft</span>
+			<% elsif blog_post.scheduled? %>
+				<span class="bg-gray-100 text-green-500 p-1 rounded text-xs font-normal ml-2">Scheduled</span>	
+			<% end %>
+		</h2>
+		<p>
+			<%= blog_post.published_at %>
+		</p>
 		<%= blog_post.body %>
 	</div>
 <% end %>

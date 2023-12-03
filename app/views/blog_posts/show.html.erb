@@ -1,9 +1,11 @@
 <%= link_to "Edit", edit_blog_post_path(@blog_post) if user_signed_in? %>
 
-<h1>
+<h1 class="py-2">
 	<%= @blog_post.title %>
 	<% if @blog_post.draft? %>
-		<span class="bg-gray-100 text-gray-900 p-1 rounded text-xs font-normal ml-2">Draft</span>
+		<span class="bg-gray-100 text-gray-900 p-1 rounded text-sm font-normal ml-3">Draft</span>
+	<% elsif @blog_post.scheduled? %>
+		<span class="bg-gray-100 text-green-500 p-1 rounded text-sm font-normal ml-3">Scheduled</span>
 	<% end %>
 </h1>
 <%= @blog_post.body %>
